@@ -47,6 +47,9 @@ function loadLoginForm () {
         request.send(JSON.stringify({username: username, password: password}));  
         submit.value = 'Logging in...';
         }
+          else{
+             alert("username and password are required fields !");
+         }
     };
     
     var register = document.getElementById('register_btn');
@@ -78,6 +81,9 @@ function loadLoginForm () {
         request.setRequestHeader('Content-Type', 'application/json');
         request.send(JSON.stringify({username: username, password: password}));  
         register.value = 'Registering...';
+         }
+         else{
+             alert("username and password are required fields !");
          }
     };
 }
