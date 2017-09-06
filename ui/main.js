@@ -65,7 +65,7 @@ function loadLoginForm () {
                   alert('User created successfully');
                   register.value = 'Registered!';
               } else {
-                  alert('Could not register the user');
+                  alert('Could not register the user or Username already exists');
                   register.value = 'Register';
               }
           }
