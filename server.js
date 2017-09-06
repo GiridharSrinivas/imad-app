@@ -110,7 +110,7 @@ app.post('/login', function (req, res) {
           res.status(500).send(err.toString());
       } else {
           if (result.rows.length === 0) {
-              res.status(403).send('username/password is invalid');
+              res.status(403).send(JSON.stringify('username/password is invalid'));
           } else {
               // Match the password
               var dbString = result.rows[0].password;
@@ -124,10 +124,10 @@ app.post('/login', function (req, res) {
                 // internally, on the server side, it maps the session id to an object
                 // { auth: {userId }}
                 
-                res.send('credentials correct!');
+                res.send(JSON.stringify('credentials correct!'));
                 
               } else {
-                res.status(403).send('username/password is invalid');
+                res.status(403).send(JSON.stringify('username/password is invalid'));
               }
           }
       }
@@ -145,7 +145,7 @@ app.get('/check-login', function (req, res) {
            }
        });
    } else {
-       res.status(400).send('You are not logged in');
+       res.status(400).send(JSON.stringify('You are not logged in'));
    }
 });
 
