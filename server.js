@@ -7,11 +7,11 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var config = {
-    user: 'sgiridhar14',
-    database: 'sgiridhar14',
+    user: 'coco98',
+    database: 'coco98',
     host: 'db.imad.hasura-app.io',
     port: '5432',
-    password: 'db-sgiridhar14-89681'
+    password: process.env.DB_PASSWORD
 };
 
 var app = express();
@@ -110,7 +110,7 @@ app.post('/login', function (req, res) {
           res.status(500).send(err.toString());
       } else {
           if (result.rows.length === 0) {
-              res.status(403).send(JSON.stringify('username/password is invalid'));
+              res.status(403).send('username/password is invalid');
           } else {
               // Match the password
               var dbString = result.rows[0].password;
@@ -124,10 +124,10 @@ app.post('/login', function (req, res) {
                 // internally, on the server side, it maps the session id to an object
                 // { auth: {userId }}
                 
-                res.send(JSON.stringify('credentials correct!'));
+                res.send('credentials correct!');
                 
               } else {
-                res.status(403).send(JSON.stringify('username/password is invalid'));
+                res.status(403).send('username/password is invalid');
               }
           }
       }
@@ -145,7 +145,7 @@ app.get('/check-login', function (req, res) {
            }
        });
    } else {
-       res.status(400).send(JSON.stringify('You are not logged in'));
+       res.status(400).send('You are not logged in');
    }
 });
 
@@ -200,7 +200,7 @@ app.post('/submit-comment/:articleName', function (req, res) {
                             if (err) {
                                 res.status(500).send(err.toString());
                             } else {
-                                res.status(200).send('Comment inserted!');
+                                res.status(200).send('Comment inserted!')
                             }
                         });
                 }
@@ -232,7 +232,7 @@ app.get('/ui/:fileName', function (req, res) {
 });
 
 
-var port = 80; // Use 8080 for local development because you might already have apache running on 80
-app.listen(80, function () {
+var port = 8080; // Use 8080 for local development because you might already have apache running on 80
+app.listen(8080, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
