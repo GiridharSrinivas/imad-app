@@ -41,12 +41,12 @@ function loadLoginForm () {
         var password = document.getElementById('password').value;
         console.log(username);
         console.log(password);
-        if(username&&password !== null)
+        if(username&&password !== null){
         request.open('POST', '/login', true);
         request.setRequestHeader('Content-Type', 'application/json');
         request.send(JSON.stringify({username: username, password: password}));  
         submit.value = 'Logging in...';
-        
+        }
     };
     
     var register = document.getElementById('register_btn');
@@ -73,11 +73,12 @@ function loadLoginForm () {
         var password = document.getElementById('password').value;
         console.log(username);
         console.log(password);
+         if(username&&password !== null){
         request.open('POST', '/create-user', true);
         request.setRequestHeader('Content-Type', 'application/json');
         request.send(JSON.stringify({username: username, password: password}));  
         register.value = 'Registering...';
-    
+         }
     };
 }
 
