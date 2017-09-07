@@ -94,9 +94,9 @@ app.post('/create-user', function (req, res) {
    var dbString = hash(password, salt);
    pool.query('INSERT INTO "user" (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
       if (err) {
-          res.status(500).send(err.toString());
+          res.status(500).send({message: err.toString()});
       } else {
-          res.send('User successfully created: ' + username);
+          res.send({message:'User successfully created: ' + username});
       }
    });
 });
@@ -110,7 +110,7 @@ app.post('/login', function (req, res) {
           res.status(500).send(err.toString());
       } else {
           if (result.rows.length === 0) {
-              res.status(403).send('username/password is invalid');
+              res.status(403).send({message:'username/password is invalid'});
           } else {
               // Match the password
               var dbString = result.rows[0].password;
@@ -124,10 +124,10 @@ app.post('/login', function (req, res) {
                 // internally, on the server side, it maps the session id to an object
                 // { auth: {userId }}
                 
-                res.send({message:"credentials correct!"});
+                res.send({message:"Login successful!"});
                 
               } else {
-                res.status(403).send('username/password is invalid');
+                res.status(403).send({message:'username/password is invalid'});
               }
           }
       }
