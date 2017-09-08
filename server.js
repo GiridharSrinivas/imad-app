@@ -127,7 +127,7 @@ app.post('/login', function (req, res) {
                 res.send({message:"Login successful!"});
                 
               } else {
-                res.status(403).send({message:'username/password is invalid'});
+                res.status(403).send({error:'username/password is invalid'});
               }
           }
       }
